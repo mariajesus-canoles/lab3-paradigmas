@@ -1,47 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package lab3paradigmas;
 
-/**
- *
- * @author mariajesuscanoles
- */
-public class Archivo {
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+class Archivo {
+    //Atributos
     String nombre;
-    String fechaModificacion;
+    String fecha;
     String contenido;
     
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
+    //Constructor
+    public Archivo(String nombre, String contenido){
         this.nombre = nombre;
-    }
-
-    public String getFechaModificacion() {
-        return fechaModificacion;
-    }
-
-    public void setFechaModificacion(String fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
-    }
-
-    public String getContenido() {
-        return contenido;
-    }
-
-    public void setContenido(String contenido) {
+        this.fecha = obtenerFecha();
         this.contenido = contenido;
     }
-    
-    public void crearArchivo(String _nombre, String _fechaModificacion, String _contenido){
-        nombre = _nombre;
-        fechaModificacion = _fechaModificacion;
-        contenido = _contenido; 
+     
+    //Metodos
+    public String obtenerFecha(){
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date fechaActual = new Date();
+        return df.format(fechaActual);
     }
     
 }
