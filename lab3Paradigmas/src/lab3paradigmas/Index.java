@@ -8,7 +8,7 @@ public class Index {
     ArrayList<Archivo> index; 
     
     //Constructor
-    public Index(ArrayList<Archivo> index){
+    public void crearIndex(ArrayList<Archivo> index){
         this.index = index;
     }
     

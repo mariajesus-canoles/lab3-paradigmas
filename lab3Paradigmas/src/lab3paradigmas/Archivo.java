@@ -12,7 +12,7 @@ class Archivo {
     String contenido;
     
     //Constructor
-    public Archivo(String nombre, String contenido){
+    public void crearArchivo(String nombre, String contenido){
         this.nombre = nombre;
         this.fecha = obtenerFecha();
         this.contenido = contenido;

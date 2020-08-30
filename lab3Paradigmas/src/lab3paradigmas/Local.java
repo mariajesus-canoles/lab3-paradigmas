@@ -9,7 +9,7 @@ public class Local {
     ArrayList<Commit> local;
     
     //Constructor
-    public Local(ArrayList<Commit> local){
+    public void crearLocal(ArrayList<Commit> local){
         this.local = local;
     }
     

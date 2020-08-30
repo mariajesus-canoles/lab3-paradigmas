@@ -8,7 +8,7 @@ public class Workspace {
     ArrayList<Archivo> workspace;
     
     //Constructor
-    public Workspace(ArrayList<Archivo> workspace){
+    public void crearWorkspace(ArrayList<Archivo> workspace){
         this.workspace = workspace;
     }
     

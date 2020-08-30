@@ -8,7 +8,7 @@ public class Remote {
     ArrayList<Commit> remote;
     
     //Constructor
-    public Remote(ArrayList<Commit> remote){
+    public void crearRemote(ArrayList<Commit> remote){
         this.remote = remote;
     }
 

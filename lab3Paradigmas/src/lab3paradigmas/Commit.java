@@ -10,7 +10,7 @@ public class Commit {
     ArrayList<Archivo> archivos; 
     
     //Constructor
-    public Commit(String rama, String mensaje, ArrayList<Archivo> archivos){
+    public void crearCommit(String rama, String mensaje, ArrayList<Archivo> archivos){
         this.rama = rama;
         this.mensaje = mensaje;
         this.archivos = archivos;
