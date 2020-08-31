@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class Workspace {
    //Atributos
-    ArrayList<Archivo> workspace;
+    ArrayList<Archivo> archivos = new ArrayList();
     
     //Constructor
     public void crearWorkspace(ArrayList<Archivo> workspace){
-        this.workspace = workspace;
+        this.archivos = workspace;
     }
     
     //Metodos

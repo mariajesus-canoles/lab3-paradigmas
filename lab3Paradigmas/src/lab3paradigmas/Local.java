@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class Local {
     //Atributos
-    ArrayList<Commit> local;
+    ArrayList<Commit> commits = new ArrayList();
     
     //Constructor
     public void crearLocal(ArrayList<Commit> local){
-        this.local = local;
+        this.commits = local;
     }
     
     //Metodos
