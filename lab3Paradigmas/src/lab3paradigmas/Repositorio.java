@@ -53,5 +53,19 @@ public class Repositorio {
         //System.out.println(repo.workspace.archivos.get(0).nombre + repo.workspace.archivos.get(0).fecha + repo.workspace.archivos.get(0).contenido);
         //return repo;
     }
+    /*
+    public void gitAdd(Repositorio repo){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese el o los archivos que desea agregar al Index:");
+        String[] _archivos = input.nextLine().split(" ");
+        for(int i = 0; i < _archivos.length; i++){
+            if (this.workspace.archivos.contains(_archivos[i])){
+                int aux = this.workspace.archivos.indexOf(_archivos[i]);
+                this.index.archivos.add(this.workspace.archivos.get(aux));
+            }
+        }
+        System.out.println(repo.index.archivos.get(0).contenido);
+    }*/
+
     
 }
