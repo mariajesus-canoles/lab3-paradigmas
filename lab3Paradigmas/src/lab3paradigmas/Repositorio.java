@@ -26,46 +26,42 @@ public class Repositorio {
     //Metodos
     public void gitInit(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del repositorio:\n");
+        System.out.println("Ingrese el nombre del repositorio:");
         String _nombreRep = input.nextLine();
-        System.out.println("Ingrese el autor del repositorio:\n");
+        System.out.println("Ingrese el autor del repositorio:");
         String _autor = input.nextLine();
-        //Repositorio repo = new Repositorio();
         Workspace _workspace = new Workspace();
         Index _index = new Index();
         Local _local = new Local();
         Remote _remote = new Remote();
         this.crearRepositorio(_nombreRep, _autor, _workspace, _index, _local, _remote);
-        //System.out.println(repo.nombreRep + repo.autor + repo.workspace + repo.index + repo.local + repo.remote);         
-        //return repo;
     }
     
     public void addArchivo(Repositorio repo){
         Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del archivo a crear:\n");
+        System.out.println("Ingrese el nombre del archivo a crear:");
         String nombreArchivo = input.nextLine();
-        System.out.println("Ingrese el contenido del archivo:\n");
+        System.out.println("Ingrese el contenido del archivo:");
         String contenidoArchivo = input.nextLine();
         Archivo arch = new Archivo();
         arch.crearArchivo(nombreArchivo, contenidoArchivo);
-        System.out.println(arch.nombre + arch.fecha + arch.contenido);
         this.workspace.archivos.add(arch);
-        //System.out.println(repo.workspace.archivos.get(0).nombre + repo.workspace.archivos.get(0).fecha + repo.workspace.archivos.get(0).contenido);
-        //return repo;
     }
-    /*
+    
+    
+    
     public void gitAdd(Repositorio repo){
         Scanner input = new Scanner(System.in);
         System.out.println("Ingrese el o los archivos que desea agregar al Index:");
         String[] _archivos = input.nextLine().split(" ");
-        for(int i = 0; i < _archivos.length; i++){
-            if (this.workspace.archivos.contains(_archivos[i])){
-                int aux = this.workspace.archivos.indexOf(_archivos[i]);
+        for(int i=0; i < _archivos.length ; i++){
+            int aux = this.workspace.verificarArchivo(this.workspace.archivos, _archivos[i]);
+            if(aux != -1){
                 this.index.archivos.add(this.workspace.archivos.get(aux));
             }
         }
-        System.out.println(repo.index.archivos.get(0).contenido);
-    }*/
-
+    }
+    
+    
     
 }

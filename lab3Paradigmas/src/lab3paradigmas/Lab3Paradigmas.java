@@ -10,7 +10,8 @@ public class Lab3Paradigmas {
         Repositorio repo = new Repositorio();
         repo.gitInit();
         repo.addArchivo(repo);
-        //repo.gitAdd(repo);
+        repo.addArchivo(repo);
+        repo.gitAdd(repo);
         
     }
 

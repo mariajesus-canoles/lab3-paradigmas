@@ -13,5 +13,12 @@ public class Workspace {
     }
     
     //Metodos
-    
+    public int verificarArchivo(ArrayList<Archivo> workspace, String archivo){
+        for(int i = 0; i<this.archivos.size(); i++){
+            if(this.archivos.get(i).nombre.equals(archivo)){
+                return i;
+            }
+        }
+        return -1;
+    }
 }
