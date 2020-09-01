@@ -62,6 +62,21 @@ public class Repositorio {
         }
     }
     
+    public void gitCommit(Repositorio repo){
+        if(this.index.archivos.isEmpty()){
+            System.out.println("Sin archivos en el Index");
+        }
+        else{
+            Scanner input = new Scanner(System.in);
+            System.out.println("Ingrese el mensaje del commit:");
+            String mensaje = input.nextLine();
+            Commit _commit = new Commit();
+            _commit.crearCommit("Master", mensaje, this.index.archivos);
+            this.local.commits.add(_commit);
+            System.out.println("Commit: " + this.local.commits.get(0).mensaje + this.local.commits.get(0).archivos.get(0).nombre);
+        }
+    }
+    
     
     
 }

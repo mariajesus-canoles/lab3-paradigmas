@@ -12,6 +12,7 @@ public class Lab3Paradigmas {
         repo.addArchivo(repo);
         repo.addArchivo(repo);
         repo.gitAdd(repo);
+        repo.gitCommit(repo);
         
     }
 
