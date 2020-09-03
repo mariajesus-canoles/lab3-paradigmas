@@ -14,6 +14,34 @@ public class Repositorio {
     Remote remote;
     
     //Constructor
+    public Repositorio(String nombreRep, String autor){
+        this.gitInit(nombreRep, autor);
+    }
+    
+    //Metodos
+    public String toString(){
+        String output = "Nombre Rep: " + this.nombreRep + ", Autor: " + this.autor
+                + "\nWorkspace: " + this.workspace + "\nIndex: " + this.index + "\nLocal: " 
+                + this.local + "\nRemote: " + this.remote;
+        return output;
+    }
+    
+    private void gitInit(String nombreRep, String autor){
+        this.nombreRep = nombreRep;
+        this.autor = autor;
+        this.workspace = new Workspace();
+        this.index = new Index();
+        this.local = new Local();
+        this.remote = new Remote();
+    }
+
+    
+    
+    
+    //----------------------------------------------
+    
+    /*
+    //Constructor
     public void crearRepositorio(String nombreRep, String autor, Workspace workspace, Index index, Local local, Remote remote){
         this.nombreRep = nombreRep;
         this.autor = autor;
@@ -75,7 +103,7 @@ public class Repositorio {
             this.local.commits.add(_commit);
             System.out.println("Commit: " + this.local.commits.get(0).mensaje + this.local.commits.get(0).archivos.get(0).nombre);
         }
-    }
+    }*/
     
     
     

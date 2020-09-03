@@ -5,13 +5,33 @@ import java.util.ArrayList;
 
 public class Workspace {
    //Atributos
-    ArrayList<Archivo> archivos = new ArrayList();
+    ArrayList<Archivo> archivos;
     
     //Constructor
-    public void crearWorkspace(ArrayList<Archivo> workspace){
-        this.archivos = workspace;
+    public Workspace(){
+        this.archivos = new ArrayList();
     }
     
+    //Metodos
+    public String toString(){
+        String output = "";
+        if (this.archivos.isEmpty()){
+            output = output + "Sin contenido en el Workspace";
+        }
+        else{
+            for(int i=0;i<this.archivos.size(); i++){
+                output = output + this.archivos.get(i) + "\n";
+            }
+        }
+        return output;
+    }
+    
+    public void addArchivo(String nombreArch, String autorArch){
+        Archivo arch = new Archivo(nombreArch, autorArch);
+        this.archivos.add(arch);
+    }
+    
+    /*
     //Metodos
     public int verificarArchivo(ArrayList<Archivo> workspace, String archivo){
         for(int i = 0; i<this.archivos.size(); i++){
@@ -20,5 +40,5 @@ public class Workspace {
             }
         }
         return -1;
-    }
+    }*/
 }

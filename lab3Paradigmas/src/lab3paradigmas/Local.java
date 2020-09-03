@@ -6,13 +6,25 @@ import java.util.ArrayList;
 
 public class Local {
     //Atributos
-    ArrayList<Commit> commits = new ArrayList();
+    ArrayList<Commit> commits;
     
     //Constructor
-    public void crearLocal(ArrayList<Commit> local){
-        this.commits = local;
+    public Local(){
+        this.commits = new ArrayList();
     }
     
     //Metodos
+    public String toString(){
+        String output = "";
+        if (this.commits.isEmpty()){
+            output = output + "Sin contenido en el Local";
+        }
+        else{
+            for(int i=0;i<this.commits.size(); i++){
+                output = output + this.commits.get(i) + "\n";
+            }
+        }
+        return output;
+    }
     
 }
