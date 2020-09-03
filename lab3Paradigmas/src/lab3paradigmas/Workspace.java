@@ -1,7 +1,7 @@
-
 package lab3paradigmas;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Workspace {
    //Atributos
@@ -20,25 +20,30 @@ public class Workspace {
         }
         else{
             for(int i=0;i<this.archivos.size(); i++){
-                output = output + this.archivos.get(i) + "\n";
+                output = output + this.archivos.get(i) + ", ";
             }
         }
         return output;
     }
     
-    public void addArchivo(String nombreArch, String autorArch){
-        Archivo arch = new Archivo(nombreArch, autorArch);
+    public void addArchivo(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese el nombre del archivo:");
+        String nombre = input.nextLine();
+        System.out.println("Ingrese el contenido del archivo:");
+        String autor = input.nextLine();
+        Archivo arch = new Archivo(nombre, autor);
         this.archivos.add(arch);
     }
     
-    /*
-    //Metodos
-    public int verificarArchivo(ArrayList<Archivo> workspace, String archivo){
+    
+    public int verificarArchivo(String archivo){
         for(int i = 0; i<this.archivos.size(); i++){
             if(this.archivos.get(i).nombre.equals(archivo)){
                 return i;
             }
         }
         return -1;
-    }*/
+    }
+    
 }

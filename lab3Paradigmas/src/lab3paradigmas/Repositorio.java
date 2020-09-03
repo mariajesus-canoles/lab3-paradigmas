@@ -1,4 +1,3 @@
-
 package lab3paradigmas;
 
 import java.util.Scanner;
@@ -14,8 +13,8 @@ public class Repositorio {
     Remote remote;
     
     //Constructor
-    public Repositorio(String nombreRep, String autor){
-        this.gitInit(nombreRep, autor);
+    public Repositorio(){
+        this.gitInit();
     }
     
     //Metodos
@@ -26,71 +25,40 @@ public class Repositorio {
         return output;
     }
     
-    private void gitInit(String nombreRep, String autor){
-        this.nombreRep = nombreRep;
+    private void gitInit(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese el nombre del repositorio:");
+        String nombre = input.nextLine();
+        System.out.println("Ingrese el autor del repositorio:");
+        String autor = input.nextLine();
+        this.nombreRep = nombre;
         this.autor = autor;
         this.workspace = new Workspace();
         this.index = new Index();
         this.local = new Local();
         this.remote = new Remote();
     }
-
     
-    
-    
-    //----------------------------------------------
-    
-    /*
-    //Constructor
-    public void crearRepositorio(String nombreRep, String autor, Workspace workspace, Index index, Local local, Remote remote){
-        this.nombreRep = nombreRep;
-        this.autor = autor;
-        this.workspace = workspace;
-        this.index = index;
-        this.local = local;
-        this.remote = remote;
-    }
-    
-    //Metodos
-    public void gitInit(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del repositorio:");
-        String _nombreRep = input.nextLine();
-        System.out.println("Ingrese el autor del repositorio:");
-        String _autor = input.nextLine();
-        Workspace _workspace = new Workspace();
-        Index _index = new Index();
-        Local _local = new Local();
-        Remote _remote = new Remote();
-        this.crearRepositorio(_nombreRep, _autor, _workspace, _index, _local, _remote);
-    }
-    
-    public void addArchivo(Repositorio repo){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del archivo a crear:");
-        String nombreArchivo = input.nextLine();
-        System.out.println("Ingrese el contenido del archivo:");
-        String contenidoArchivo = input.nextLine();
-        Archivo arch = new Archivo();
-        arch.crearArchivo(nombreArchivo, contenidoArchivo);
-        this.workspace.archivos.add(arch);
-    }
-    
-    
-    
-    public void gitAdd(Repositorio repo){
+    public void gitAdd(){
         Scanner input = new Scanner(System.in);
         System.out.println("Ingrese el o los archivos que desea agregar al Index:");
-        String[] _archivos = input.nextLine().split(" ");
-        for(int i=0; i < _archivos.length ; i++){
-            int aux = this.workspace.verificarArchivo(this.workspace.archivos, _archivos[i]);
-            if(aux != -1){
-                this.index.archivos.add(this.workspace.archivos.get(aux));
+        String[] archivos = input.nextLine().split(" ");
+        if(archivos.length == 1 && archivos[0].equals("all")){
+            for(int i=0; i<this.workspace.archivos.size(); i++){
+                this.index.archivos.add(this.workspace.archivos.get(i));
+            }
+        }
+        else{
+            for(int j=0; j<archivos.length ; j++){
+                int aux = this.workspace.verificarArchivo(archivos[j]);
+                if(aux != -1){
+                    this.index.archivos.add(this.workspace.archivos.get(aux));
+                }
             }
         }
     }
-    
-    public void gitCommit(Repositorio repo){
+
+    public void gitCommit(){
         if(this.index.archivos.isEmpty()){
             System.out.println("Sin archivos en el Index");
         }
@@ -98,13 +66,22 @@ public class Repositorio {
             Scanner input = new Scanner(System.in);
             System.out.println("Ingrese el mensaje del commit:");
             String mensaje = input.nextLine();
-            Commit _commit = new Commit();
-            _commit.crearCommit("Master", mensaje, this.index.archivos);
-            this.local.commits.add(_commit);
-            System.out.println("Commit: " + this.local.commits.get(0).mensaje + this.local.commits.get(0).archivos.get(0).nombre);
+            Commit commit = new Commit("Master", mensaje, this.index.archivos);
+            this.local.commits.add(commit);
+            this.index = new Index();
         }
-    }*/
+    }
     
-    
-    
+    public void gitPush(){
+        if(this.local.commits.isEmpty()){
+            System.out.println("Sin commits en el Local");
+        }
+        else{
+            for(int i=0; i<this.local.commits.size(); i++){
+                if (! this.remote.commits.contains(this.local.commits.get(i))){
+                    this.remote.commits.add(this.local.commits.get(i));
+                }
+            }
+        }
+    }
 }

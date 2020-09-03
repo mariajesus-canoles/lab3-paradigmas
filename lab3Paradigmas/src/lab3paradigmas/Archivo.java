@@ -1,26 +1,26 @@
-
 package lab3paradigmas;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 class Archivo {
     //Atributos
-    String autor;
+    String nombre;
     String fecha;
     String contenido;
     
     //Constructor
     public Archivo(String nombre, String contenido){
-        this.autor = nombre;
+        this.nombre = nombre;
         this.fecha = obtenerFecha();
         this.contenido = contenido;
     }
      
     //Metodos
     public String toString(){
-        String output = "Autor: " + this.autor + ", Fecha: " + this.fecha + ", Contenido: " + this.contenido;
+        String output = "Nombre: " + this.nombre + ", Fecha: " + this.fecha + ", Contenido: " + this.contenido;
         return output;
     }
     

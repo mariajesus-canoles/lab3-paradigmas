@@ -1,7 +1,7 @@
-
 package lab3paradigmas;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Index {
     //Atributos
@@ -20,7 +20,7 @@ public class Index {
         }
         else{
             for(int i=0;i<this.archivos.size(); i++){
-                output = output + this.archivos.get(i) + "\n";
+                output = output + this.archivos.get(i) + ", ";
             }
         }
         return output;

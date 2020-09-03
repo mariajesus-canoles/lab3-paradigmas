@@ -1,8 +1,6 @@
-
 package lab3paradigmas;
 
 import java.util.ArrayList;
-
 
 public class Local {
     //Atributos
@@ -21,7 +19,7 @@ public class Local {
         }
         else{
             for(int i=0;i<this.commits.size(); i++){
-                output = output + this.commits.get(i) + "\n";
+                output = output + this.commits.get(i) + ", ";
             }
         }
         return output;
