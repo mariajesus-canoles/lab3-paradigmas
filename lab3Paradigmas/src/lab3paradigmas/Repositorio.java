@@ -50,7 +50,7 @@ public class Repositorio {
         }
         else{
             for(int j=0; j<archivos.length ; j++){
-                int aux = this.workspace.verificarArchivo(archivos[j]);
+                int aux = this.workspace.posNombreArchivo(archivos[j]);
                 if(aux != -1){
                     this.index.archivos.add(this.workspace.archivos.get(aux));
                 }
@@ -84,4 +84,17 @@ public class Repositorio {
             }
         }
     }
+    
+    public void gitPull(){
+        for(int i=0; i<this.remote.commits.size(); i++){
+            for(int j=0; j<this.remote.commits.get(i).archivos.size(); j++){
+                if(! this.workspace.verificarArchivo(this.remote.commits.get(i).archivos.get(j))){
+                    this.workspace.archivos.add(this.remote.commits.get(i).archivos.get(j));
+                } 
+            }
+        }
+    }
+    
+    
+    
 }

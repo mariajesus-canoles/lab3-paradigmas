@@ -1,5 +1,6 @@
 package lab3paradigmas;
-               
+
+      
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -10,12 +11,13 @@ public class Lab3Paradigmas {
         repo.workspace.addArchivo();
         repo.workspace.addArchivo();
         repo.gitAdd();
-        System.out.println(repo);
+        //System.out.println(repo);
         repo.gitCommit();
-        System.out.println(repo);
+        //System.out.println(repo);
         repo.gitPush();
+        //System.out.println(repo);
+        repo.gitPull();
         System.out.println(repo);
-        
         
     }
 

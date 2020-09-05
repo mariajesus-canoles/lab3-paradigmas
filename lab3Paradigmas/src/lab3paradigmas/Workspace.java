@@ -37,13 +37,22 @@ public class Workspace {
     }
     
     
-    public int verificarArchivo(String archivo){
+    public int posNombreArchivo(String archivo){
         for(int i = 0; i<this.archivos.size(); i++){
             if(this.archivos.get(i).nombre.equals(archivo)){
                 return i;
             }
         }
         return -1;
+    }
+    
+    public boolean verificarArchivo(Archivo archivo){
+        for(int i = 0; i<this.archivos.size(); i++){
+            if(this.archivos.get(i).equals(archivo)){
+                return true;
+            }
+        }
+        return false;
     }
     
 }
