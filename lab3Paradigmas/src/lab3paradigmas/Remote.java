@@ -19,7 +19,12 @@ public class Remote {
         }
         else{
             for(int i=0;i<this.commits.size(); i++){
-                output = output + this.commits.get(i) + ", ";
+                if(i+1 == this.commits.size()){
+                    output = output + this.commits.get(i);
+                }
+                else{
+                    output = output + this.commits.get(i) + ", ";
+                }
             }
         }
         return output;

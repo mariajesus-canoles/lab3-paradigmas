@@ -20,7 +20,8 @@ class Archivo {
      
     //Metodos
     public String toString(){
-        String output = "Nombre: " + this.nombre + ", Fecha: " + this.fecha + ", Contenido: " + this.contenido;
+        //String output = "Nombre: " + this.nombre + ", Fecha: " + this.fecha + ", Contenido: " + this.contenido;
+        String output = this.nombre;
         return output;
     }
     

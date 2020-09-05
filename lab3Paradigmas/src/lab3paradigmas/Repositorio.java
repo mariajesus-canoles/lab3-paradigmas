@@ -95,6 +95,65 @@ public class Repositorio {
         }
     }
     
+    public String gitStatus(){
+        String output = "Nombre Repositorio: " + this.nombreRep + "\nAutor Repositorio: " + this.autor 
+                + "\nCantidad archivos en el Workspace: " + this.workspace.archivos.size() 
+                + "\nCantidad archivos en el Index: " + this.index.archivos.size()
+                + "\nCantidad commits en el Local: " + this.local.commits.size();
+                if(this.local.commits.equals(this.remote.commits)){
+                    output = output + "\nRemote se encuentra al dia";
+                }
+                else{
+                    output = output + "\nRemote no se encuentra al dia";
+                }
+        return output;
+    }
     
+   public void menu(){
+        String aux = "### SIMULACION DE GIT ###\nEscoja su opcion:\n1. add\n2. commit\n3. pull\n4. push\n5. status\n"
+                + "6. Crear nuevo archivo\n7. Salir\nIntroduzca su opcion: ";
+        Scanner input = new Scanner(System.in);
+        System.out.println(aux);
+        String aux2 = input.nextLine();
+        int opcion = Integer.parseInt(aux2);
+        if(opcion == 1){
+            this.gitAdd();
+            //System.out.println(this);
+            this.menu();
+        }
+        if(opcion == 2){
+            this.gitCommit();
+            //System.out.println(this);
+            this.menu();
+        }
+        if(opcion == 3){
+            this.gitPull();
+            //System.out.println(this);
+            this.menu();
+        }
+        if(opcion == 4){
+            this.gitPush();
+            //System.out.println(this);
+            this.menu();
+        }
+        if(opcion == 5){
+            System.out.println(this.gitStatus());
+            //System.out.println(this);
+            this.menu();
+        }
+        if(opcion == 6){
+            this.workspace.addArchivo();
+            //System.out.println(this);
+            this.menu();
+        }
+        if(opcion == 7){
+            System.out.println("### FIN SIMULACION GIT ###");
+            System.exit(0);
+        }
+        else{
+            System.out.println("Opcion ingresada invalida\n");
+            this.menu();
+        }
+    } 
     
 }

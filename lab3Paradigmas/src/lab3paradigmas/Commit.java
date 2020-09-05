@@ -19,7 +19,12 @@ public class Commit {
     public String toString(){
         String output = "Rama: " + this.rama + " Mensaje: " + this.mensaje + " ";
         for(int i=0;i<this.archivos.size(); i++){
-                output = output + this.archivos.get(i) + ", ";
+                if(i+1 == this.archivos.size()){
+                    output = output + this.archivos.get(i) + ", ";
+                }
+                else{
+                    output = output + this.archivos.get(i);
+                }
         }
         return output;
     }
