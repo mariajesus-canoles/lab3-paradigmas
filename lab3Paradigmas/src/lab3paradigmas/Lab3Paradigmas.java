@@ -1,5 +1,4 @@
 package lab3paradigmas;
-
       
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ public class Lab3Paradigmas {
         Repositorio repo = new Repositorio();
         repo.workspace.addArchivo();
         repo.menu();
+        
     }
 
 }

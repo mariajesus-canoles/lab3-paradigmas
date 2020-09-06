@@ -43,7 +43,7 @@ public class Repositorio {
         Scanner input = new Scanner(System.in);
         System.out.println("Ingrese el o los archivos que desea agregar al Index:");
         String[] archivos = input.nextLine().split(" ");
-        if(archivos.length == 1 && archivos[0].equals("all")){
+        if(archivos.length == 1 && archivos[0].equals("ALL")){
             for(int i=0; i<this.workspace.archivos.size(); i++){
                 this.index.archivos.add(this.workspace.archivos.get(i));
             }
@@ -86,11 +86,16 @@ public class Repositorio {
     }
     
     public void gitPull(){
-        for(int i=0; i<this.remote.commits.size(); i++){
-            for(int j=0; j<this.remote.commits.get(i).archivos.size(); j++){
-                if(! this.workspace.verificarArchivo(this.remote.commits.get(i).archivos.get(j))){
-                    this.workspace.archivos.add(this.remote.commits.get(i).archivos.get(j));
-                } 
+        if(this.remote.commits.isEmpty()){
+            System.out.println("Sin commits en el Remote");
+        }
+        else{
+            for(int i=0; i<this.remote.commits.size(); i++){
+                for(int j=0; j<this.remote.commits.get(i).archivos.size(); j++){
+                    if(! this.workspace.verificarArchivo(this.remote.commits.get(i).archivos.get(j))){
+                        this.workspace.archivos.add(this.remote.commits.get(i).archivos.get(j));
+                    } 
+                }
             }
         }
     }
@@ -109,44 +114,52 @@ public class Repositorio {
         return output;
     }
     
-   public void menu(){
+    public void menu(){
         String aux = "### SIMULACION DE GIT ###\nEscoja su opcion:\n1. add\n2. commit\n3. pull\n4. push\n5. status\n"
-                + "6. Crear nuevo archivo\n7. Salir\nIntroduzca su opcion: ";
+                + "6. Crear nuevo archivo\n7. Log\n8. Branch\n9. Salir\nIntroduzca su opcion:";
         Scanner input = new Scanner(System.in);
         System.out.println(aux);
         String aux2 = input.nextLine();
         int opcion = Integer.parseInt(aux2);
         if(opcion == 1){
             this.gitAdd();
-            //System.out.println(this);
+            System.out.println(this);
             this.menu();
         }
         if(opcion == 2){
             this.gitCommit();
-            //System.out.println(this);
+            System.out.println(this);
             this.menu();
         }
         if(opcion == 3){
             this.gitPull();
-            //System.out.println(this);
+            System.out.println(this);
             this.menu();
         }
         if(opcion == 4){
             this.gitPush();
-            //System.out.println(this);
+            System.out.println(this);
             this.menu();
         }
         if(opcion == 5){
             System.out.println(this.gitStatus());
-            //System.out.println(this);
+            System.out.println(this);
             this.menu();
         }
         if(opcion == 6){
             this.workspace.addArchivo();
-            //System.out.println(this);
+            System.out.println(this);
             this.menu();
         }
         if(opcion == 7){
+            this.gitLog();
+            this.menu();
+        }
+        if(opcion == 8){
+            this.gitBranch();
+            this.menu();
+        }
+        if(opcion == 9){
             System.out.println("### FIN SIMULACION GIT ###");
             System.exit(0);
         }
@@ -154,6 +167,38 @@ public class Repositorio {
             System.out.println("Opcion ingresada invalida\n");
             this.menu();
         }
-    } 
+    }
+   
+    public void gitLog(){
+       int largo = this.local.commits.size();
+       if(largo<=5){
+           System.out.println("Los ultimos " + largo + " commits agregados al Local son:");
+           for(int i=largo; i>0; i--){
+               System.out.println(this.local.commits.get(i-1));
+           }
+       }
+       else{
+           System.out.println("Los ultimos 5 commits agregados al Local son:\n");
+           for(int j=5; j>0; j--){
+               System.out.println(this.local.commits.get(j-1));
+           }
+       }
+    }
+   
+    public void gitBranch(){
+        if(this.index.archivos.isEmpty()){
+           System.out.println("Sin archivos en el Index");
+        }
+        else{
+           Scanner input = new Scanner(System.in);
+           System.out.println("Ingrese el nombre de la nueva rama:");
+           String rama = input.nextLine();
+           System.out.println("Ingrese el mensaje del commit:");
+           String mensaje = input.nextLine();
+           Commit commit = new Commit(rama, mensaje, this.index.archivos);
+           this.local.commits.add(commit);
+           this.index = new Index();
+        }
+    }
     
 }
