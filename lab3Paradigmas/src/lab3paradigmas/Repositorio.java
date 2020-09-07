@@ -41,7 +41,8 @@ public class Repositorio {
     
     public void gitAdd(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese el o los archivos que desea agregar al Index:");
+        System.out.println("Ingrese los archivos que desea agregar al Index, en caso\nde querer"
+                + " agregar todos los archivos escribir 'ALL':");
         String[] archivos = input.nextLine().split(" ");
         if(archivos.length == 1 && archivos[0].equals("ALL")){
             for(int i=0; i<this.workspace.archivos.size(); i++){
@@ -109,7 +110,7 @@ public class Repositorio {
                     output = output + "\nRemote se encuentra al dia";
                 }
                 else{
-                    output = output + "\nRemote no se encuentra al dia";
+                    output = output + "\nRemote NO se encuentra al dia";
                 }
         return output;
     }
@@ -119,70 +120,77 @@ public class Repositorio {
                 + "6. Crear nuevo archivo\n7. Log\n8. Branch\n9. Salir\nIntroduzca su opcion:";
         Scanner input = new Scanner(System.in);
         System.out.println(aux);
-        String aux2 = input.nextLine();
-        int opcion = Integer.parseInt(aux2);
-        if(opcion == 1){
+        String opcion = input.nextLine();
+        //int opcion = Integer.parseInt(aux2);
+        if(opcion.equals("1")){
             this.gitAdd();
             System.out.println(this);
             this.menu();
         }
-        if(opcion == 2){
+        if(opcion.equals("2")){
             this.gitCommit();
             System.out.println(this);
             this.menu();
         }
-        if(opcion == 3){
+        if(opcion.equals("3")){
             this.gitPull();
             System.out.println(this);
             this.menu();
         }
-        if(opcion == 4){
+        if(opcion.equals("4")){
             this.gitPush();
             System.out.println(this);
             this.menu();
         }
-        if(opcion == 5){
+        if(opcion.equals("5")){
             System.out.println(this.gitStatus());
             System.out.println(this);
             this.menu();
         }
-        if(opcion == 6){
+        if(opcion.equals("6")){
             this.workspace.addArchivo();
             System.out.println(this);
             this.menu();
         }
-        if(opcion == 7){
-            this.gitLog();
+        if(opcion.equals("7")){
+            System.out.println(this.gitLog());
             this.menu();
         }
-        if(opcion == 8){
+        if(opcion.equals("8")){
             this.gitBranch();
             this.menu();
         }
-        if(opcion == 9){
+        if(opcion.equals("9")){
             System.out.println("### FIN SIMULACION GIT ###");
             System.exit(0);
         }
         else{
-            System.out.println("Opcion ingresada invalida\n");
+            System.out.println("*************************\nOpcion ingresada invalida\n*************************");
             this.menu();
         }
     }
    
-    public void gitLog(){
-       int largo = this.local.commits.size();
-       if(largo<=5){
-           System.out.println("Los ultimos " + largo + " commits agregados al Local son:");
-           for(int i=largo; i>0; i--){
-               System.out.println(this.local.commits.get(i-1));
-           }
-       }
-       else{
-           System.out.println("Los ultimos 5 commits agregados al Local son:\n");
-           for(int j=5; j>0; j--){
-               System.out.println(this.local.commits.get(j-1));
-           }
-       }
+    public String gitLog(){
+        if(this.local.commits.isEmpty()){
+            return "Sin commits en el Local";
+        }
+        else{
+            int largo = this.local.commits.size();
+            String output;
+            if(largo<=5){
+                output = "Los ultimos " + largo + " commits agregados al Local son:\n";
+                for(int i=largo; i>0; i--){
+                    output = output + this.local.commits.get(i-1) + "\n";
+                }
+            }
+            else{
+                output = "Los ultimos 5 commits agregados al Local son:\n";
+                for(int j=5; j>0; j--){
+                    output = output + this.local.commits.get(j-1) + "\n";
+                }
+            }
+            return output; 
+        }
     }
    
     public void gitBranch(){

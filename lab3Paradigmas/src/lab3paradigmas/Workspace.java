@@ -24,7 +24,7 @@ public class Workspace {
                     output = output + this.archivos.get(i);
                 }
                 else{
-                    output = output + this.archivos.get(i) + ", ";
+                    output = output + this.archivos.get(i) + " +- ";
                 }
             }
         }
@@ -32,12 +32,7 @@ public class Workspace {
     }
     
     public void addArchivo(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del archivo:");
-        String nombre = input.nextLine();
-        System.out.println("Ingrese el contenido del archivo:");
-        String autor = input.nextLine();
-        Archivo arch = new Archivo(nombre, autor);
+        Archivo arch = new Archivo();
         this.archivos.add(arch);
     }
     

@@ -9,7 +9,5 @@ public class Lab3Paradigmas {
         Repositorio repo = new Repositorio();
         repo.workspace.addArchivo();
         repo.menu();
-        
     }
-
 }

@@ -23,7 +23,7 @@ public class Remote {
                     output = output + this.commits.get(i);
                 }
                 else{
-                    output = output + this.commits.get(i) + ", ";
+                    output = output + this.commits.get(i) + ";+ ";
                 }
             }
         }

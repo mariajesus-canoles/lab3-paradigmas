@@ -23,7 +23,7 @@ public class Commit {
                     output = output + this.archivos.get(i);
                 }
                 else{
-                    output = output + this.archivos.get(i) + ", ";
+                    output = output + this.archivos.get(i) + " - ";
                 }
         }
         return output;

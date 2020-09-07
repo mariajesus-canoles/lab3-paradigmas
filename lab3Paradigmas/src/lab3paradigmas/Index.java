@@ -24,7 +24,7 @@ public class Index {
                     output = output + this.archivos.get(i);
                 }
                 else{
-                    output = output + this.archivos.get(i) + ", ";
+                    output = output + this.archivos.get(i) + " -- ";
                 }
             }
         }
