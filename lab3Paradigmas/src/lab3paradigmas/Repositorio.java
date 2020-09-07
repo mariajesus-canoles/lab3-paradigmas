@@ -1,8 +1,18 @@
+//@author Maria Jesus Canoles
+//Rut 20300159-2
+//Ultimo Edit 06/09/2020
+//@version 1.0
 package lab3paradigmas;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+* Clase para representar un repositorio,
+* determinada por nombreRep, autor, workspace, index, local y remote
+* @version 1.8
+* @author Maria Jesus Canoles
+*/
 public class Repositorio {
     //Atributos
     String nombreRep;
@@ -13,11 +23,23 @@ public class Repositorio {
     Remote remote;
     
     //Constructor
+    /**
+     * @param nombreRep nombre del repositorio
+     * @param autor autor del repositorio
+     * @param workspace zona workspace
+     * @param index zona index
+     * @param local zona local
+     * @param remote zona remote
+     */
     public Repositorio(){
         this.gitInit();
     }
     
     //Metodos
+    /**
+     * metodo que genera un string con el contenido del repositorio
+     * @return contenido del repositorio
+     */
     public String toString(){
         String output = "Nombre Rep: " + this.nombreRep + ", Autor: " + this.autor
                 + "\nWorkspace: " + this.workspace + "\nIndex: " + this.index + "\nLocal: " 
@@ -25,6 +47,9 @@ public class Repositorio {
         return output;
     }
     
+    /**
+     * metodo que instancia un repositorio a partir de un nombre y autor, con sus zonas vacias
+     */
     private void gitInit(){
         Scanner input = new Scanner(System.in);
         System.out.println("Ingrese el nombre del repositorio:");
@@ -39,6 +64,9 @@ public class Repositorio {
         this.remote = new Remote();
     }
     
+    /**
+     * metodo que agrega archivos del workspace al index
+     */
     public void gitAdd(){
         Scanner input = new Scanner(System.in);
         System.out.println("Ingrese los archivos que desea agregar al Index, en caso\nde querer"
@@ -59,6 +87,10 @@ public class Repositorio {
         }
     }
 
+    /**
+     * metodo que genera un commit con los archivos contenidos en el index 
+     * y a partir de un mensaje descriptivo
+     */
     public void gitCommit(){
         if(this.index.archivos.isEmpty()){
             System.out.println("Sin archivos en el Index");
@@ -73,6 +105,9 @@ public class Repositorio {
         }
     }
     
+    /**
+     * metodo que copia en el remote los commits contenidos en el local 
+     */
     public void gitPush(){
         if(this.local.commits.isEmpty()){
             System.out.println("Sin commits en el Local");
@@ -86,6 +121,9 @@ public class Repositorio {
         }
     }
     
+    /**
+     * metodo que copia en el workspace los arhivos contenidos en el remote
+     */
     public void gitPull(){
         if(this.remote.commits.isEmpty()){
             System.out.println("Sin commits en el Remote");
@@ -101,6 +139,11 @@ public class Repositorio {
         }
     }
     
+    /**
+     * metodo que genera un string con el nombre del repositorio, autor, cantidad de archivos en el
+     * workspace e index, cantidad de commits en el local, e informa si el remote se encuentra al dia
+     * @return informacion sobre el repositorio
+     */
     public String gitStatus(){
         String output = "Nombre Repositorio: " + this.nombreRep + "\nAutor Repositorio: " + this.autor 
                 + "\nCantidad archivos en el Workspace: " + this.workspace.archivos.size() 
@@ -115,41 +158,38 @@ public class Repositorio {
         return output;
     }
     
+    /**
+     * metodo que interactua con el usuario y muestra todas las funcionalidades que se pueden realizar
+     * en el repositorio en el cual se esta trabajando
+     */
     public void menu(){
         String aux = "### SIMULACION DE GIT ###\nEscoja su opcion:\n1. add\n2. commit\n3. pull\n4. push\n5. status\n"
                 + "6. Crear nuevo archivo\n7. Log\n8. Branch\n9. Salir\nIntroduzca su opcion:";
         Scanner input = new Scanner(System.in);
         System.out.println(aux);
         String opcion = input.nextLine();
-        //int opcion = Integer.parseInt(aux2);
         if(opcion.equals("1")){
             this.gitAdd();
-            System.out.println(this);
             this.menu();
         }
         if(opcion.equals("2")){
             this.gitCommit();
-            System.out.println(this);
             this.menu();
         }
         if(opcion.equals("3")){
             this.gitPull();
-            System.out.println(this);
             this.menu();
         }
         if(opcion.equals("4")){
             this.gitPush();
-            System.out.println(this);
             this.menu();
         }
         if(opcion.equals("5")){
             System.out.println(this.gitStatus());
-            System.out.println(this);
             this.menu();
         }
         if(opcion.equals("6")){
             this.workspace.addArchivo();
-            System.out.println(this);
             this.menu();
         }
         if(opcion.equals("7")){
@@ -170,6 +210,11 @@ public class Repositorio {
         }
     }
    
+    /** 
+     * metodo que genera un string con los cinco ultimos commits agregados al local, en caso de existir menos
+     * commits, genera el string con los commits respectivos
+     * @return 
+     */
     public String gitLog(){
         if(this.local.commits.isEmpty()){
             return "Sin commits en el Local";
@@ -193,6 +238,10 @@ public class Repositorio {
         }
     }
    
+    /**
+     * metodo que crea un commit con el nombre de una nueva rama ingresada por el usuario
+     * con los archivos contenidos en el index
+     */
     public void gitBranch(){
         if(this.index.archivos.isEmpty()){
            System.out.println("Sin archivos en el Index");
